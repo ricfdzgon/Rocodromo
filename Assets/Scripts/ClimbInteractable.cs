@@ -17,13 +17,14 @@ public class ClimbInteractable : XRBaseInteractable
         base.OnSelectEntered(args);
 
         MonoBehaviour interactorComponent = (MonoBehaviour)args.interactorObject;
-        climber.SetClimbingHand(interactorComponent);
+        climber.SetClimbingHand(interactorComponent, true);
     }
 
     protected override void OnSelectExited(SelectExitEventArgs args)
     {
         base.OnSelectExited(args);
-
-        climber.SetClimbingHand(null);
+        
+        MonoBehaviour interactorComponent = (MonoBehaviour)args.interactorObject;
+        climber.SetClimbingHand(interactorComponent, false);
     }
 }

@@ -1,30 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class Climber : MonoBehaviour
 {
-    // Start is called before the first frame update
+    ActionBasedController climbingHand;
     void Start()
     {
 
     }
 
-    // Update is called once per frame
     void Update()
     {
 
     }
 
-    public void SetClimbingHand(MonoBehaviour hand)
+    public void SetClimbingHand(MonoBehaviour hand, bool grab)
     {
-        if (hand != null)
+        if (grab)
         {
             Debug.Log("Climber.SetClimbingHand mano agarrada " + hand.gameObject.name);
+            climbingHand = hand.GetComponent<ActionBasedController>();
         }
         else
         {
-            Debug.Log("Climber.SetClimbingHand no estoy agarrado");
+            if (hand.name == climbingHand.name)
+            {
+                Debug.Log("Climber.SetClimbingHand no estoy agarrado");
+                climbingHand = null;
+            }
         }
     }
 }
