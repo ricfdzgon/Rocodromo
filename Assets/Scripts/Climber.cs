@@ -5,15 +5,20 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class Climber : MonoBehaviour
 {
+    CharacterController characterController;
     ActionBasedController climbingHand;
+    AbstractSpeedometer climbinghandSpeedometer;
     void Start()
     {
-
+        characterController = GetComponent<CharacterController>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
-
+        if (climbingHand)
+        {
+            Climb(Time.fixedDeltaTime);
+        }
     }
 
     public void SetClimbingHand(MonoBehaviour hand, bool grab)
@@ -21,7 +26,9 @@ public class Climber : MonoBehaviour
         if (grab)
         {
             Debug.Log("Climber.SetClimbingHand mano agarrada " + hand.gameObject.name);
+
             climbingHand = hand.GetComponent<ActionBasedController>();
+            climbinghandSpeedometer = hand.GetComponent<Speedometer>();
         }
         else
         {
@@ -29,7 +36,13 @@ public class Climber : MonoBehaviour
             {
                 Debug.Log("Climber.SetClimbingHand no estoy agarrado");
                 climbingHand = null;
+                climbinghandSpeedometer = null;
             }
         }
+    }
+
+    private void Climb(float deltaTime)
+    {
+        characterController.Move(-climbinghandSpeedometer.GetVelocity() * deltaTime);
     }
 }
