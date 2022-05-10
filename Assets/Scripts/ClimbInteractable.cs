@@ -1,18 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class ClimbInteractable : MonoBehaviour
+using UnityEngine.XR.Interaction.Toolkit;
+public class ClimbInteractable : XRBaseInteractable
 {
-    // Start is called before the first frame update
+    public Climber climber;
     void Start()
     {
-        
+        if (climber == null)
+        {
+            Debug.Log("ClimbInteractable.Start: climber no establecido");
+        }
+    }
+    protected override void OnSelectEntered(SelectEnterEventArgs args)
+    {
+        base.OnSelectEntered(args);
+
+        MonoBehaviour interactorComponent = (MonoBehaviour)args.interactorObject;
+        climber.SetClimbingHand(interactorComponent);
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override void OnSelectExited(SelectExitEventArgs args)
     {
-        
+        base.OnSelectExited(args);
+
+        climber.SetClimbingHand(null);
     }
 }
