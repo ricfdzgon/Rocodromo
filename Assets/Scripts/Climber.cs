@@ -9,6 +9,9 @@ public class Climber : MonoBehaviour
     public ClimbingMode climbingMode;
     CharacterController characterController;
     ActionBasedController climbingHand;
+    //secondaryHand guarda la referencia a la mano con la que estbamos previamente
+    //agarrados, mientras esta no se libere el agarre del ClimbingKnob
+    ActionBasedController secondaryHand;
     AbstractSpeedometer climbinghandSpeedometer;
     void Start()
     {
@@ -43,23 +46,33 @@ public class Climber : MonoBehaviour
         {
             Debug.Log("Climber.SetClimbingHand mano agarrada " + hand.gameObject.name);
 
+            //Antes de quedarnos con la nueva climbingHand, guardamos la referencia
+            //de la actual en secondaryHand
+            secondaryHand = climbingHand;
+
             climbingHand = hand.GetComponent<ActionBasedController>();
-            if (climbingMode == ClimbingMode.bad)
-            {
-                climbinghandSpeedometer = hand.GetComponent<Speedometer>();
-            }
-            else
-            {
-                climbinghandSpeedometer = hand.GetComponent<HandControllerSpeedometer>();
-            }
+            climbinghandSpeedometer = GetSpeedometer(climbingHand);
         }
         else
         {
+            //Si grab es false, quiere decir que se soltó la mano que representa el parametro hand
+
             if (hand.name == climbingHand.name)
             {
-                Debug.Log("Climber.SetClimbingHand no estoy agarrado");
-                climbingHand = null;
-                climbinghandSpeedometer = null;
+                climbingHand = secondaryHand;
+                if (climbingHand == null)
+                {
+                    Debug.Log("Climber.SetClimbingHand no estoy agarrado");
+                    climbinghandSpeedometer = null;
+                }
+                else
+                {
+                    climbinghandSpeedometer = GetSpeedometer(climbingHand);
+                }
+            }
+            else
+            {
+                secondaryHand = null;
             }
         }
     }
@@ -67,6 +80,18 @@ public class Climber : MonoBehaviour
     private void Climb(float deltaTime)
     {
         characterController.Move(-climbinghandSpeedometer.GetVelocity() * deltaTime);
+    }
+
+    private AbstractSpeedometer GetSpeedometer(ActionBasedController hand)
+    {
+        if (climbingMode == ClimbingMode.bad)
+        {
+            return hand.GetComponent<Speedometer>();
+        }
+        else
+        {
+            return hand.GetComponent<HandControllerSpeedometer>();
+        }
     }
 }
 
