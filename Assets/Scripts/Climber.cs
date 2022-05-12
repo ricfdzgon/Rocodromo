@@ -5,6 +5,8 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class Climber : MonoBehaviour
 {
+    private Vector3 velocity;
+    public ClimbingMode climbingMode;
     CharacterController characterController;
     ActionBasedController climbingHand;
     AbstractSpeedometer climbinghandSpeedometer;
@@ -13,11 +15,24 @@ public class Climber : MonoBehaviour
         characterController = GetComponent<CharacterController>();
     }
 
+    void Update()
+    {
+        if (!climbingHand)
+        {
+            characterController.Move(velocity * Time.deltaTime);
+        }
+    }
+
     void FixedUpdate()
     {
         if (climbingHand)
         {
             Climb(Time.fixedDeltaTime);
+        }
+
+        if (!climbingHand)
+        {
+            velocity += Physics.gravity * Time.fixedDeltaTime;
         }
     }
 
@@ -28,7 +43,14 @@ public class Climber : MonoBehaviour
             Debug.Log("Climber.SetClimbingHand mano agarrada " + hand.gameObject.name);
 
             climbingHand = hand.GetComponent<ActionBasedController>();
-            climbinghandSpeedometer = hand.GetComponent<Speedometer>();
+            if (climbingMode == ClimbingMode.bad)
+            {
+                climbinghandSpeedometer = hand.GetComponent<Speedometer>();
+            }
+            else
+            {
+                climbinghandSpeedometer = hand.GetComponent<HandControllerSpeedometer>();
+            }
         }
         else
         {
@@ -45,4 +67,10 @@ public class Climber : MonoBehaviour
     {
         characterController.Move(-climbinghandSpeedometer.GetVelocity() * deltaTime);
     }
+}
+
+public enum ClimbingMode
+{
+    good,
+    bad
 }

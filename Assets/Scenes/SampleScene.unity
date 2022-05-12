@@ -264,6 +264,7 @@ GameObject:
   - component: {fileID: 85430773}
   - component: {fileID: 85430775}
   - component: {fileID: 85430776}
+  - component: {fileID: 85430777}
   m_Layer: 0
   m_Name: RightHand Direct Interactor
   m_TagString: Untagged
@@ -557,6 +558,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocity: {x: 0, y: 0, z: 0}
   speed: 0
+--- !u!114 &85430777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 85430771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85fee6e33537e0649b2b9e8b4badff1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handControllerVelocityProperty:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Hand Controller Velocity Property
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 45f27677-5f82-4ca1-9a1f-6e85d4280194
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 5297710642349396951, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!1 &108863949
 GameObject:
   m_ObjectHideFlags: 0
@@ -2148,6 +2173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a444762dcfdfa14e914bcc8465d24f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  climbingMode: 0
 --- !u!143 &579862869
 CharacterController:
   m_ObjectHideFlags: 0
@@ -6507,6 +6533,7 @@ GameObject:
   - component: {fileID: 1719046369}
   - component: {fileID: 1719046371}
   - component: {fileID: 1719046372}
+  - component: {fileID: 1719046373}
   m_Layer: 0
   m_Name: LeftHand Direct Interactor
   m_TagString: Untagged
@@ -6800,6 +6827,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocity: {x: 0, y: 0, z: 0}
   speed: 0
+--- !u!114 &1719046373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1719046367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85fee6e33537e0649b2b9e8b4badff1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handControllerVelocityProperty:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Hand Controller Velocity Property
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 45f27677-5f82-4ca1-9a1f-6e85d4280194
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 4083728786612502482, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!1 &1744089075
 GameObject:
   m_ObjectHideFlags: 0

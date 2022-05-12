@@ -1073,6 +1073,54 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "HandSpeedometer",
+            "id": "fbf65e02-45f6-44a4-822f-aac0ad6e54ef",
+            "actions": [
+                {
+                    "name": "LeftHandSpeedometer",
+                    "type": "Value",
+                    "id": "f29d9623-536b-430a-b40f-9cc226ef1894",
+                    "expectedControlType": "Vector3",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "RightHandSpeedometer",
+                    "type": "Value",
+                    "id": "1f58e27a-1e23-4e6a-b0b9-247aae191384",
+                    "expectedControlType": "Vector3",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "e198f3bb-4b87-455d-add5-bc9e2f70d50e",
+                    "path": "<OculusTouchController>{LeftHand}/deviceVelocity",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftHandSpeedometer",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a361efe3-d358-4237-b5eb-1a98aad82d6e",
+                    "path": "<OculusTouchController>{RightHand}/deviceVelocity",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RightHandSpeedometer",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
