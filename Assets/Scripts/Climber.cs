@@ -5,6 +5,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class Climber : MonoBehaviour
 {
+    private ContiniusMovement continiusMovement;
     private Vector3 velocity;
     public ClimbingMode climbingMode;
     CharacterController characterController;
@@ -16,6 +17,8 @@ public class Climber : MonoBehaviour
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+
+        continiusMovement = GetComponent<ContiniusMovement>();
     }
 
     void Update()
@@ -52,6 +55,12 @@ public class Climber : MonoBehaviour
 
             climbingHand = hand.GetComponent<ActionBasedController>();
             climbinghandSpeedometer = GetSpeedometer(climbingHand);
+
+            //Como estamos agarrados para trepar, desactivamos el movimiento continuo
+            if (continiusMovement != null)
+            {
+                continiusMovement.enabled = false;
+            }
         }
         else
         {
@@ -64,6 +73,12 @@ public class Climber : MonoBehaviour
                 {
                     Debug.Log("Climber.SetClimbingHand no estoy agarrado");
                     climbinghandSpeedometer = null;
+
+                    //Dejamos de estar agarrados, por lo tanto activamos el movimiento continuo
+                    if (continiusMovement != null)
+                    {
+                        continiusMovement.enabled = true;
+                    }
                 }
                 else
                 {

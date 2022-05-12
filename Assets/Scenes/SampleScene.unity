@@ -2629,7 +2629,7 @@ GameObject:
   - component: {fileID: 561440753}
   - component: {fileID: 561440752}
   - component: {fileID: 561440751}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2725,6 +2725,7 @@ GameObject:
   - component: {fileID: 579862866}
   - component: {fileID: 579862868}
   - component: {fileID: 579862869}
+  - component: {fileID: 579862870}
   m_Layer: 0
   m_Name: XR Origin
   m_TagString: Untagged
@@ -2795,6 +2796,25 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.85, z: 0}
+--- !u!114 &579862870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 579862865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8073516c4ff70f42b92feae215eab9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2
+  inputSource: 4
+  groudLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  additionalHeight: 0.2
+  gravity: -9.81
 --- !u!1 &581646734
 GameObject:
   m_ObjectHideFlags: 0
