@@ -28,6 +28,7 @@ public class Climber : MonoBehaviour
         if (climbingHand)
         {
             Climb(Time.fixedDeltaTime);
+            velocity.y = 0;
         }
 
         if (!climbingHand)
